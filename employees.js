@@ -64,9 +64,8 @@ empOne.getSchedule()
     dot or bracket notation.
 */
 
-//CODE HERE
-
-
+const empTwo = {...empOne, name: `Nick`} //using the spread operator {...} to make a copy of the empOne object and assign it to empTwo, also assigning Nick to empTwo
+//empTwo.getSchedule()
 
 //////////////////PROBLEM 2////////////////////
 /*  
@@ -91,7 +90,18 @@ empOne.getSchedule()
     the employees array. 
 */
 
-//CODE HERE
+class Manager extends Employee{ //extends will allow Manager class to use same parameters as Employee class and become a `child` of the Employee class.
+    constructor(name, shifts, employees){
+        super(name, shifts)
+        this.employees = employees
+    }
+    getEmployees(){
+        console.log(`${this.name} manages ${this.employees}.`) //this will console log the string with the user inputted parameters if the method getEmployees is called
+    }
+    addEmployee(emp){
+       this.employees.push(emp) //this will push a new employee to the array of existing employees
+    }
+}
 
 
 
@@ -106,7 +116,8 @@ empOne.getSchedule()
     employees: Cece and Schmidt
 */
 
-//CODE HERE
+const manager = new Manager(`Bob`, `weekday mornings, weekday afternoons`, [`Cece, Schmidt`])
+
 
 
 /*
@@ -114,7 +125,7 @@ empOne.getSchedule()
     `manager` object.  
 */
 
-//CODE HERE
+manager.getEmployees()
 
 /*
     Call the `addEmployee` method on the 
@@ -122,7 +133,7 @@ empOne.getSchedule()
     'Coach' or whatever name you'd like.
 */
 
-//CODE HERE 
+manager.addEmployee(` and Jim`)
 
 /*
     Call the `getEmployees` method on the
@@ -130,4 +141,4 @@ empOne.getSchedule()
     that an employee was added.
 */
 
-//CODE HERE
+manager.getEmployees()

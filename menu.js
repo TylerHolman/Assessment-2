@@ -30,16 +30,16 @@
     'kids'
 */
 
-const pizza = {
+const pizza = { //assign the variable pizza to an object that has 6 properties
     name: `Chogath`,
     price: 10,
     category: `Entree`,
     popularity: 9,
     rating: 8,
-    tags: [`Amazing`, `Delicious`, `Too much meat`]
+    tags: [`Amazing`, `Delicious`, `gluten-free`] //will return tags as an array
 }
 
-console.log(pizza)
+// console.log(pizza)
 
 
 //////////////////PROBLEM 2////////////////////
@@ -59,7 +59,7 @@ console.log(pizza.popularity)
     get the value.
 */
 
-console.log(pizza.tags[1])
+console.log(pizza.tags[1]) //grabs the variable pizza and goes to the object tags, tags is an array so if we want to pick a certain string we must choose the index with [#] following tags
 
 
 /*
@@ -69,9 +69,9 @@ console.log(pizza.tags[1])
     Print the value of your new price variable.
 */
 
-// const {price} = pizza1
+ const {price} = pizza //this will destructure the object of price from pizza so we can call it by just typing price
 
-// console.log(pizza)
+ console.log(price)
 
 /*
     Fourth, and last, destructure the category
@@ -80,7 +80,9 @@ console.log(pizza.tags[1])
     Print the value of your category variable. 
 */
 
-//CODE HERE
+const {category} = pizza
+
+console.log(category)
 
 
 //////////////////PROBLEM 3////////////////////
@@ -94,14 +96,48 @@ console.log(pizza.tags[1])
     tags. That way, you'll be able to use this
     data in some functions that you'll write.
 */
-const foodArr = {
+const foodArr = [
+   {
     name: `Cho2`,
     price: 15,
     category: `Entree`,
+    popularity: 10,
+    rating: 10,
+    tags: [`Solid choice`, `cheese-extreme`, `meat lovers`]
+   },
+   {
+    name: `Cho1`,
+    price: 11,
+    category: `Entree`,
+    popularity: 6,
+    rating: 5,
+    tags: [`vegetarian`, `gluten-free`, `all natural`]
+   }, 
+   {
+    name: `Cho3`,
+    price: 8,
+    category: `appetizer`,
+    popularity: 8,
+    rating: 8,
+    tags: [`vegan`, `gluten-free`, `all natural`]
+   },
+   {
+    name: `Cho4`,
+    price: 18,
+    category: `Entree`,
     popularity: 7,
-    rating: 6,
-    tags: [`Solid choice`, `gluten-free`, `all natural`]
-}
+    rating: 7,
+    tags: [`vegan`, `gluten-free`, `all natural`]
+   },
+   {
+    name: `Cho5`,
+    price: 10,
+    category: `Entree`,
+    popularity: 9,
+    rating: 9,
+    tags: [`cheese-extreme`, `five-cheese`, `no meat`]
+   }
+]
 
 
 
@@ -117,13 +153,9 @@ const foodArr = {
     your food objects has.
 */
 
-function filterFood(tagNames, callback){
-    if(foodArr.tags === tagNames)
-    return callback(tagNames[0])
-}
-
-const filteredFood = foodArr.filter(`Solid choice`)
-
+const filteredFood = foodArr.filter(pizzas => pizzas.tags.includes(`cheese-extreme`)) //assign a parameter in a callback function which was pizzas => then use      pizzas.tags to determine what object we wanted to cipher through, and includes will go through each individual string within the tags array and only return the pizzas with a tag of the input we type into includes().
+   
+console.log(filteredFood)
 
 
 //////////////////PROBLEM 5////////////////////
@@ -165,14 +197,23 @@ const filteredFood = foodArr.filter(`Solid choice`)
     Return the filtered array from the entire function
 */
 
-//CODE HERE
+const filterByProperty = (property, number, type) =>{ //assign an object 3 parameters
+    const filteredArray = foodArr.filter(pizza => {  //assign filteredArray to be what we filter through in the foodArr
+        if(type === `above`){ //this will assign the type parameter to the string `above`
+            return pizza[property] > number //this will take the parameter pizza and cipher through the array depending on what we assign to the parameter of property, doing this makes property a flexible parameter and will be able to look for (popularity, price, rating).
+        }else if(type === `below`){ //if the condition is not met then it will check this statement which assigns the type parameter to `below`
+            return pizza[property] < number //this uses the pizza parameter and ciphers through the array to find the `string` we assigned to the parameter of property
+        }
+    })
+    return filteredArray //once the function has went through the objects in the array, it will then assign each object that met the conditions above and assign them to the filteredArray. This will allow it to be invoked/console.log with an output and not blank []
+}
 
 
 /*
-    Invoke the `filterByProperty` function passing
-    in a value for each paramter.
+Invoke the `filterByProperty` function passing
+in a value for each paramter.
 
-    You'll have to console.log to see the filtered array
+You'll have to console.log to see the filtered array
 */
 
-//CODE HERE
+console.log(filterByProperty(`price`, 12, `below`))

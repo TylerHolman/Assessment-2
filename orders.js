@@ -29,21 +29,19 @@
     stored on the object.
 */
 class Ticket {
-    constructor(items, orderTime, customerId){
-     this.orderTimes = orderTime   
+    constructor(items, orderTime, customerId){ //constructor allows you to decide your placeholders/parameters for the values you will be inputting later on
+     this.orderTimes = orderTime  //this. serves to assign the variable so it can be used in methods/other functions
      this.items = items
      this.customerID = customerId
      this.status = `queued`
     }
     updateStatus(newStatus){
-        // let newStatus = this.status
-        this.status = `ready`
-    console.log(`The order for customer ${this.customerID} is now ${this.status}`)
+      this.status =  newStatus
+    console.log(`The order for customer ${this.customerID} is now ${this.status}.`)
     }
 }
 
-let bob = new Ticket(`car`, `25 minutes`, 24)
-bob.updateStatus()
+
 
 
 /*
@@ -57,7 +55,7 @@ bob.updateStatus()
     customer: 575
 */
 
-let firstTicket = new Ticket(`pizza, bread, soda`, `7:03pm`, 575)
+let firstTicket = new Ticket(`pizza, bread, soda`, `7:03pm`, 575) //this creates an instance for to assign values to the class created so we can invoke the function to test if it works. 
 
 
 /*
@@ -66,4 +64,4 @@ let firstTicket = new Ticket(`pizza, bread, soda`, `7:03pm`, 575)
     'cooking'
 */
 
-firstTicket.updateStatus()
+firstTicket.updateStatus(`cooking`) //assigns cooking to the parameter this.status by invoking the method updateStatus, which will print the string `The order for customer 575 is now cooking.` instead of it being `The order for customer 575 is now undefined.`

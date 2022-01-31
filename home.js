@@ -21,7 +21,7 @@
     'Welcome back, Andrew'
 */
 
-const greetUser = (username) => `Welcome back ` + username
+const greetUser = (username) => `Welcome back ` + username //adds our callback to the string
 
 
 console.log(greetUser(`Tyler`))
@@ -52,8 +52,7 @@ console.log(greetUser(`Tyler`))
 const deliveryAreaZipCodes = [85205, 85204, 85203, 85213, 85206]
 
 const canWeDeliver = (zipCode) =>{
-    for(i = 0; i < deliveryAreaZipCodes.length; i++)
-if(deliveryAreaZipCodes[i] === zipCode){
+if(deliveryAreaZipCodes.includes(zipCode)){
     return `You're in our delivery zone!`
 }else{
     return `Sorry, we can't delivery to that address.`
@@ -81,14 +80,27 @@ console.log(canWeDeliver(85205))
     loop (for loop, higher order array method).
     Name your new function `canWeDeliverTwo`.
 */
-function canWeDeliverTwo(deliver){
-    if(deliveryAreaZipCodes.includes(deliver)){
-        return `You're in our delivery zone`
+// const canWeDeliverTwo= zipCode => {    //another way
+//    deliveryAreaZipCodes.forEach(zipCode => {
+//        if(zipCode === zip){//zip is each parameter in the canWedeliverTwo[]
+//         return `You're in our delivery zone!`
+//        }
+//     })
+//     return `Sorry, we can't delivery to that address.`  //must place outside the foreach loop that way if it doesnt find a match it will return `Sorry, we cant deliver to that address' otherwise it would return that everytime regardless of the input
+  
+const canWeDeliverTwo = zipCode => {
+    for(i = 0; i <deliveryAreaZipCodes.length; i++){ //loops through each index in the array
+        if(deliveryAreaZipCodes[i] === zipCode){ //at each index it will stop and check to see if the index is equal to zipCode
+        return `You're in our delivery zone!` //if it is it will return this, if not it will return the following..
     }else{
-        return `We can't deliver to you.`
+        return `Sorry, we can't delivery to that address.`
     }
+        
+
+    }
+
 }
-console.log(canWeDeliverTwo(85205))
+console.log(canWeDeliverTwo(8205))
 
 //////////////////PROBLEM 3////////////////////
 /* 
@@ -113,8 +125,8 @@ const deals = [
         desc: '   This deal lasts until the end of March! '
     }
 ]
-deals.title.replace(`15% Off!`, `10% Off!`)
-// let yellow = random.replace(`15% Off!`, `10% Off!`)
+
+
 /*
     The owner has decided to take the 15% off
     deal down to 10%.
@@ -123,6 +135,7 @@ deals.title.replace(`15% Off!`, `10% Off!`)
     to be itself, but use the `replace` method
     to replace the 15 with a 10.
 */
+deals[0].title = deals[0].title.replace(`15`, `10`) //for a change to occur to what is being replaced the object in the array must be reassigned to itself. Then to access the title:`15` we have to choose our var which is deals, then pick which index/array we want to enter [0], next pick the object we want to change .title and use the function .replace(), afterwards the first input is what we want to replace and the 2nd input is what we want to replace it with. 
 
 console.log(deals)
 
@@ -139,4 +152,6 @@ console.log(deals)
     to be displaying wrong on the live site.
 */
 
-//CODE HERE
+deals[1].desc = deals[1].desc.replace(`March`, `April`).trim() //.trim will remove any whitespace in front of the string so it looks nice and clean
+
+console.log(deals)
